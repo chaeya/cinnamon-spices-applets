@@ -9,8 +9,8 @@ const St = imports.gi.St;
 const Meta = imports.gi.Meta;
 const Main = imports.ui.main;
 const Util = imports.misc.util;
-const AppletManager = imports.ui.appletManager; //
-//const {SessionManager} = imports.misc.gnomeSession;
+const GnomeSession = imports.misc.gnomeSession;
+const AppletManager = imports.ui.appletManager;
 const {ScreenSaverProxy} = imports.misc.screenSaver;
 const {PopupMenuManager, PopupIconMenuItem} = imports.ui.popupMenu;
 const {getAppFavorites} = imports.ui.appFavorites;
@@ -127,6 +127,7 @@ class CinnamenuApplet extends TextIconApplet {
         this.apps = new Apps(this.appSystem);
         //this.session = new SessionManager();
         this.screenSaverProxy = new ScreenSaverProxy();
+        this.sessionManager = new GnomeSession.SessionManager();
 
         const updateKeybinding = () => {
             Main.keybindingManager.addHotKey(
@@ -179,7 +180,7 @@ class CinnamenuApplet extends TextIconApplet {
         };
 
         this.settings = {};
-        this.settingsObj = new AppletSettings(this.settings, __meta.uuid, this.instance_id);
+        this.appletSettings = new AppletSettings(this.settings, __meta.uuid, this.instance_id);
         [
         { key: 'categories',                value: 'categories',            cb: null },
         { key: 'custom-menu-height',        value: 'customMenuHeight',      cb: null },
@@ -233,7 +234,7 @@ class CinnamenuApplet extends TextIconApplet {
         { key: 'sidebar-icon-size',         value: 'sidebarIconSize',       cb: refreshDisplay },
         { key: 'use-box-style',             value: 'useBoxStyle',           cb: refreshDisplay },
         { key: 'use-tile-style',            value: 'useTileStyle',          cb: refreshDisplay }
-        ].forEach(setting => this.settingsObj.bind(
+        ].forEach(setting => this.appletSettings.bind(
                           setting.key,
                           setting.value,
                           setting.cb ? (...args) => setting.cb.call(this, ...args) : null ) );
@@ -242,7 +243,7 @@ class CinnamenuApplet extends TextIconApplet {
             //This is a hidden config option.
             this.settings.searchStartFolder = GLib.get_home_dir();
         }
-        getWebBookmarksAsync();
+
         this.recentApps = new RecentApps(this);
         this._onEnableRecentsChange();
         updateActivateOnHover();
@@ -269,10 +270,10 @@ class CinnamenuApplet extends TextIconApplet {
     on_applet_removed_from_panel() {
         this.willUnmount = true;
         Main.keybindingManager.removeHotKey('overlay-key-' + this.instance_id);
-        if (!this.settingsObj) {
+        if (!this.appletSettings) {
             return;
         }
-        this.settingsObj.finalize();
+        this.appletSettings.finalize();
         this.signals.disconnectAllSignals();
         this.display.destroy();
         this.menu.destroy();
@@ -410,7 +411,9 @@ class CinnamenuApplet extends TextIconApplet {
     }
 
     addFolderCategory(path) {
-        this.settings.folderCategories.push(path);
+        const folderCategories = this.settings.folderCategories.slice();
+        folderCategories.push(path);
+        this.settings.folderCategories = folderCategories;
     }
 
     removeFolderCategory(path) {
@@ -1015,6 +1018,7 @@ class CinnamenuApplet extends TextIconApplet {
         //if (!text || !text.trim()) return;
 
         const pattern = graphemeBaseChars(pattern_raw).toLocaleUpperCase().trim();
+        
         //Don't repeat the same search. This can happen if a key and backspace are pressed in quick
         //succession while a previous search is being carried out.
         if (pattern_raw === this.previousSearchPattern) {
@@ -1058,7 +1062,6 @@ class CinnamenuApplet extends TextIconApplet {
 
         //-----
         
-
         const showResults = () => {//sort and display all search results
             if (!this.searchActive || thisSearchId != this.currentSearchId){
                 return; //Search mode has ended or search string has changed
@@ -1141,22 +1144,35 @@ class CinnamenuApplet extends TextIconApplet {
 
         if ((typeof ans === 'number' || typeof ans === 'boolean' || typeof ans === 'bigint')
                                                                     && ans != pattern_raw ) {
+            
+            let ans_str = ans.toString();
+            //remove rounding error
+            if (typeof ans === 'number') {
+                if (ans > Number.MAX_SAFE_INTEGER || ans < Number.MIN_SAFE_INTEGER) {
+                    // JS will show up to 21 digits of an integer (inaccurately) even though
+                    // only 16 are significant, so show in exponential form instead.
+                    ans_str = Number(ans.toPrecision(16)).toExponential();
+                } else {
+                    ans_str = Number(ans.toPrecision(16)).toString();
+                }
+            }
+            
             if (!this.calcGIcon) {
                 this.calcGIcon = new Gio.FileIcon(
                         { file: Gio.file_new_for_path(__meta.path + '/../icons/calc.png')});
             }
             otherResults.push({
                             isSearchResult: true,
-                            name: ans.toString(),//('Solution:') + ' ' + ans,
+                            name: ans_str,//('Solution:') + ' ' + ans,
                             description: _('Click to copy'),
                             deleteAfterUse: true,
                             icon: new St.Icon({ gicon: this.calcGIcon,
                                                 icon_size: this.getAppIconSize() }),
                             activate: () => {
                                     const clipboard = St.Clipboard.get_default();
-                                    clipboard.set_text(St.ClipboardType.CLIPBOARD, ans.toString());}
+                                    clipboard.set_text(St.ClipboardType.CLIPBOARD, ans_str);}
                          });
-            calculatorResult = pattern_raw + " = " + ans;
+            calculatorResult = pattern_raw + " = " + ans_str;
         }
 
         //---web search option and search suggestions---

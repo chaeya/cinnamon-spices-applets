@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is put in the public domain.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-16 17:17+0200\n"
+"Project-Id-Version: Sensors@claudiux 3.7.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-applets/"
+"issues\n"
+"POT-Creation-Date: 2024-07-03 19:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,109 +18,117 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. metadata.json->name
-#: applet.js:90
+#: applet.js:214
 msgid "Sensors Monitor"
 msgstr ""
 
-#: applet.js:403 applet.js:455
+#: applet.js:394
+msgid "Suspended"
+msgstr ""
+
+#: applet.js:612 applet.js:654
 msgid "high:"
 msgstr ""
 
-#: applet.js:403 applet.js:405 applet.js:455 applet.js:457 applet.js:495
+#: applet.js:612 applet.js:614 applet.js:654 applet.js:656 applet.js:697
 msgid "n/a"
 msgstr ""
 
-#: applet.js:405 applet.js:457
+#: applet.js:614 applet.js:656
 msgid "crit:"
 msgstr ""
 
-#: applet.js:495 applet.js:538
+#: applet.js:697 applet.js:740
 msgid "min:"
 msgstr ""
 
-#: applet.js:540
+#: applet.js:742
 msgid "max:"
 msgstr ""
 
-#: applet.js:568
+#: applet.js:770
 msgid "No intrusion detected"
 msgstr ""
 
-#: applet.js:568
+#: applet.js:770
 msgid "INTRUSION DETECTED!"
 msgstr ""
 
-#: applet.js:588
+#: applet.js:790
 msgid "Must be configured!"
 msgstr ""
 
-#: applet.js:863
+#: applet.js:1125
 msgid "Settings"
 msgstr ""
 
-#: applet.js:863
+#: applet.js:1125
 msgid ":"
 msgstr ""
 
 #. settings-schema.json->page_General->title
-#: applet.js:870
+#: applet.js:1132
 msgid "⚙ General"
 msgstr ""
 
-#: applet.js:880
+#: applet.js:1142
 msgid "🌡 Temperature sensors"
 msgstr ""
 
-#: applet.js:890
+#: applet.js:1152
 msgid "🤂 Fan sensors"
 msgstr ""
 
-#: applet.js:900
+#: applet.js:1162
 msgid "🗲 Voltage sensors"
 msgstr ""
 
-#: applet.js:910
+#: applet.js:1172
 msgid "⮿ Intrusion sensors"
 msgstr ""
 
 #. settings-schema.json->xsensors->description
-#: applet.js:921
+#: applet.js:1193
 msgid "Run xsensors"
 msgstr ""
 
-#: applet.js:932
+#: applet.js:1202
+msgid "Suspend Sensors"
+msgstr ""
+
+#: applet.js:1213
 msgid "Reload this applet"
 msgstr ""
 
-#: applet.js:1224
+#: applet.js:1514
 #, javascript-format
 msgid "Are you sure you want to remove '%s'?"
 msgstr ""
 
-#: lib/checkDependencies.js:303
+#: lib/checkDependencies.js:317
 #, javascript-format
 msgid "The applet %s is fully functional."
 msgstr ""
 
-#: lib/checkDependencies.js:304
+#: lib/checkDependencies.js:318
 msgid "All dependencies are installed"
 msgstr ""
 
-#: lib/checkDependencies.js:332
+#: lib/checkDependencies.js:346
 msgid ""
 "You appear to be missing some of the programs required for this applet to "
 "have all its features."
 msgstr ""
 
-#: lib/checkDependencies.js:333
+#: lib/checkDependencies.js:347
 msgid "Please execute, in the just opened terminal, the commands:"
 msgstr ""
 
-#: lib/checkDependencies.js:334
+#: lib/checkDependencies.js:348
 msgid "Some dependencies are not installed!"
 msgstr ""
 
-#: lib/util.js:243
+#: lib/util.js:244
 #, javascript-format
 msgid "Execution of '%s' failed:"
 msgstr ""
@@ -194,12 +202,20 @@ msgstr ""
 msgid "⮿ Intrusion"
 msgstr ""
 
+#. settings-schema.json->page_Custom->title
+msgid "⛓ Custom"
+msgstr ""
+
 #. settings-schema.json->section_Display->title
 #. settings-schema.json->section_tempOptions->title
 #. settings-schema.json->section_fanOptions->title
 #. settings-schema.json->section_voltOptions->title
 #. settings-schema.json->section_intrusionOptions->title
 msgid "Options"
+msgstr ""
+
+#. settings-schema.json->section_Tooltip->title
+msgid "Tooltip"
 msgstr ""
 
 #. settings-schema.json->section_Report->title
@@ -218,6 +234,7 @@ msgstr ""
 #. settings-schema.json->section_fanDisplay->title
 #. settings-schema.json->section_voltDisplay->title
 #. settings-schema.json->section_intrusionDisplay->title
+#. settings-schema.json->section_customDisplay->title
 msgid "Display"
 msgstr ""
 
@@ -239,6 +256,14 @@ msgstr ""
 
 #. settings-schema.json->section_intrusionSensors->title
 msgid "Intrusion sensors"
+msgstr ""
+
+#. settings-schema.json->section_customDisclaimer->title
+msgid "Disclaimer"
+msgstr ""
+
+#. settings-schema.json->section_customSensors->title
+msgid "Custom sensors"
 msgstr ""
 
 #. settings-schema.json->interval->options
@@ -298,7 +323,39 @@ msgid "30"
 msgstr ""
 
 #. settings-schema.json->interval->options
-msgid "60"
+msgid "1 minute"
+msgstr ""
+
+#. settings-schema.json->interval->options
+msgid "2 minutes"
+msgstr ""
+
+#. settings-schema.json->interval->options
+msgid "3 minutes"
+msgstr ""
+
+#. settings-schema.json->interval->options
+msgid "4 minutes"
+msgstr ""
+
+#. settings-schema.json->interval->options
+msgid "5 minutes"
+msgstr ""
+
+#. settings-schema.json->interval->options
+msgid "10 minutes"
+msgstr ""
+
+#. settings-schema.json->interval->options
+msgid "15 minutes"
+msgstr ""
+
+#. settings-schema.json->interval->options
+msgid "30 minutes"
+msgstr ""
+
+#. settings-schema.json->interval->options
+msgid "1 hour"
 msgstr ""
 
 #. settings-schema.json->interval->description
@@ -311,7 +368,8 @@ msgstr ""
 
 #. settings-schema.json->keep_size->tooltip
 msgid ""
-"Checked: The size of this applet remains constant, once all your preferences have been defined.\n"
+"Checked: The size of this applet remains constant, once all your preferences "
+"have been defined.\n"
 "Unchecked: The size of this applet is optimized, but it may change."
 msgstr ""
 
@@ -319,24 +377,8 @@ msgstr ""
 msgid "Character size (% of standard size)"
 msgstr ""
 
-#. settings-schema.json->char_color->options
-msgid "Default"
-msgstr ""
-
-#. settings-schema.json->char_color->options
-msgid "White"
-msgstr ""
-
-#. settings-schema.json->char_color->options
-msgid "Black"
-msgstr ""
-
-#. settings-schema.json->char_color->options
-msgid "Grey"
-msgstr ""
-
-#. settings-schema.json->char_color->options
-msgid "Light Grey"
+#. settings-schema.json->char_color_customized->description
+msgid "Customize Text Color"
 msgstr ""
 
 #. settings-schema.json->char_color->description
@@ -349,8 +391,7 @@ msgstr ""
 
 #. settings-schema.json->separator->tooltip
 msgid ""
-"The string used to separate values in horizontal orientation. Default is "
-"'│'."
+"The string used to separate values in horizontal orientation. Default is '│'."
 msgstr ""
 
 #. settings-schema.json->remove_border->description
@@ -367,6 +408,10 @@ msgstr ""
 
 #. settings-schema.json->remove_icons->tooltip
 msgid "Whether or not to remove icons in panel."
+msgstr ""
+
+#. settings-schema.json->show_tooltip->description
+msgid "Display a tooltip on mouseover"
 msgstr ""
 
 #. settings-schema.json->bold_values->description
@@ -403,6 +448,7 @@ msgstr ""
 #. settings-schema.json->show_fan->description
 #. settings-schema.json->show_volt->description
 #. settings-schema.json->show_intrusion->description
+#. settings-schema.json->show_custom->description
 msgid "Display the values of these selected sensors"
 msgstr ""
 
@@ -410,6 +456,7 @@ msgstr ""
 #. settings-schema.json->show_fan->tooltip
 #. settings-schema.json->show_volt->tooltip
 #. settings-schema.json->show_intrusion->tooltip
+#. settings-schema.json->show_custom->tooltip
 msgid ""
 "Whether or not to display the values of the sensors selected in the list "
 "below."
@@ -419,6 +466,7 @@ msgstr ""
 #. settings-schema.json->show_fan_name->description
 #. settings-schema.json->show_volt_name->description
 #. settings-schema.json->show_intrusion_name->description
+#. settings-schema.json->show_custom_name->description
 msgid "Display the 'Shown name' of each of these selected sensors"
 msgstr ""
 
@@ -478,6 +526,16 @@ msgid ""
 "the temperature value."
 msgstr ""
 
+#. settings-schema.json->journalize_temp->description
+msgid "Log high and critical temperatures"
+msgstr ""
+
+#. settings-schema.json->journalize_temp->tooltip
+msgid ""
+"When this option is checked, temperatures exceeding the high or critical "
+"limit are recorded in the system journal."
+msgstr ""
+
 #. settings-schema.json->btn_renew_temp_sensors_list->description
 #. settings-schema.json->btn_renew_fan_sensors_list->description
 #. settings-schema.json->btn_renew_volt_sensors_list->description
@@ -499,6 +557,7 @@ msgstr ""
 #. settings-schema.json->fan_sensors->columns->title
 #. settings-schema.json->volt_sensors->columns->title
 #. settings-schema.json->intrusion_sensors->columns->title
+#. settings-schema.json->custom_sensors->columns->title
 msgid ""
 "Show\n"
 "in panel"
@@ -509,6 +568,7 @@ msgstr ""
 #. settings-schema.json->fan_sensors->columns->title
 #. settings-schema.json->volt_sensors->columns->title
 #. settings-schema.json->intrusion_sensors->columns->title
+#. settings-schema.json->custom_sensors->columns->title
 msgid ""
 "Show\n"
 "in tooltip"
@@ -537,12 +597,14 @@ msgstr ""
 #. settings-schema.json->temp_disks->columns->title
 #. settings-schema.json->fan_sensors->columns->title
 #. settings-schema.json->volt_sensors->columns->title
+#. settings-schema.json->custom_sensors->columns->title
 msgid "Formula"
 msgstr ""
 
 #. settings-schema.json->temp_sensors->tooltip
 msgid ""
-"Double-click on a line to change 'Shown name', 'High', 'Critical' or 'Formula'.\n"
+"Double-click on a line to change 'Shown name', 'High', 'Critical' or "
+"'Formula'.\n"
 "To reset a 'Shown name', copy/paste the 'Sensor name'.\n"
 "'High' and 'Critical' (optional) must be valid numbers.\n"
 "'Formula' (optional):\n"
@@ -569,12 +631,23 @@ msgstr ""
 
 #. settings-schema.json->temp_disks->tooltip
 msgid ""
-"Disk name: The name of the disk, as returned by the 'lsblk' command. Please see help.\n"
+"Disk name: The name of the disk, as returned by the 'lsblk' command. Please "
+"see help.\n"
 "High and Critical values: Cf. technical manual of your disk."
 msgstr ""
 
 #. settings-schema.json->fan_unit->description
 msgid "Abbreviation of \"Rotations per minute\""
+msgstr ""
+
+#. settings-schema.json->journalize_fan->description
+msgid "Log critical fan speeds"
+msgstr ""
+
+#. settings-schema.json->journalize_fan->tooltip
+msgid ""
+"When this option is checked, fan speeds below the critical limit are "
+"recorded in the system log."
 msgstr ""
 
 #. settings-schema.json->fan_sensors->columns->title
@@ -610,6 +683,16 @@ msgstr ""
 msgid "mV only"
 msgstr ""
 
+#. settings-schema.json->journalize_volt->description
+msgid "Log critical voltages"
+msgstr ""
+
+#. settings-schema.json->journalize_volt->tooltip
+msgid ""
+"When this option is checked, voltages below the minimum limit or above the "
+"maximum limit are recorded in the system log."
+msgstr ""
+
 #. settings-schema.json->volt_sensors->columns->title
 msgid ""
 "Min\n"
@@ -634,6 +717,7 @@ msgid ""
 msgstr ""
 
 #. settings-schema.json->show_intrusion_name->tooltip
+#. settings-schema.json->show_custom_name->tooltip
 msgid ""
 " Whether or not to display into this applet label the 'Shown name' of the "
 "sensors selected in the list below. Without effect in vertical panels."
@@ -643,13 +727,64 @@ msgstr ""
 msgid "Show in the panel only when an intrusion was detected"
 msgstr ""
 
+#. settings-schema.json->journalize_intrusion->description
+msgid "Log intrusions"
+msgstr ""
+
+#. settings-schema.json->journalize_intrusion->tooltip
+msgid "When this option is checked, intrusions are recorded in the system log."
+msgstr ""
+
 #. settings-schema.json->intrusion_sensors->tooltip
 msgid ""
 "Double-click on a line to change Shown name.\n"
 "To reset a Shown name, copy/paste the Sensor name."
 msgstr ""
 
+#. settings-schema.json->custom_disclaimer->description
+msgid ""
+"These settings are for advanced users only!\n"
+"Please refer to the README file."
+msgstr ""
+
+#. settings-schema.json->custom_openREADME->description
+msgid "Open the README file"
+msgstr ""
+
+#. settings-schema.json->custom_sensors->columns->title
+msgid "Type"
+msgstr ""
+
+#. settings-schema.json->custom_sensors->columns->title
+msgid "Name"
+msgstr ""
+
+#. settings-schema.json->custom_sensors->columns->title
+msgid ""
+"File to\n"
+"monitor"
+msgstr ""
+
+#. settings-schema.json->custom_sensors->columns->title
+msgid ""
+"High\n"
+"value"
+msgstr ""
+
+#. settings-schema.json->custom_sensors->columns->title
+msgid ""
+"Critical\n"
+"value"
+msgstr ""
+
+#. settings-schema.json->custom_sensors->tooltip
+msgid ""
+"Add a line by custom sensor to set the type, the name and the path of the "
+"file to monitor (/sys/class/...)."
+msgstr ""
+
 #. settings-schema.json->report->description
+#: scripts/show_sensor_values.sh:5
 msgid "Example of sensor values from this computer"
 msgstr ""
 
